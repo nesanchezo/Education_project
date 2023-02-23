@@ -22,6 +22,8 @@ st.write("""
 expander_bar = st.expander("About")
 expander_bar.markdown("""
 * **Python libraries:** plotly, pandas, streamlit, numpy, matplotlib, seaborn
+Se presenta la predicción de como sera el rendimiento del estudiantes en el 
+siguiente trimestre académico.
 """)
 
 df = pd.read_csv('data_model.csv')

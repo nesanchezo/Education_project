@@ -19,6 +19,8 @@ st.write("""
 expander_bar = st.expander("About")
 expander_bar.markdown("""
 * **Python libraries:** plotly, pandas, streamlit, numpy, matplotlib, seaborn
+En este Dashboard se pretende presentar a los estudiantes mas destacados los cuales
+puedan ser seleccionados como mejores de cada clase
 """)
 
 df = pd.read_csv('data_model.csv')
@@ -83,9 +85,21 @@ dict_materias = {'Ciencias naturales':'Ciencias naturales-nota_p4', 'Ciencias so
 'Matemáticas':'Matemáticas-nota_p4', 'Sensibilización Pedagógica':'Sensibilización Pedagógica-nota_p4', 'Tecnología e informática':'Tecnología e informática-nota_p4',
 'Humanidades':'Humanidades-nota_p4'}
 
-#materia = st.sidebar.selectbox(
- #   'How would you like to be contacted?',materias)
+tab1, tab2, tab3 = st.tabs(['GreenFlag','OrangeFlag', 'RedFlag'])
 
-#st.write('You selected:', dict_materias[materia])
+with tab1:
+   st.header("GreenFlag")
+   df_grado_flags2 = df_grado[df_grado.firstLabel=='GreenFlag'].nombre
+   st.table(df_grado_flags2)
+
+with tab2:
+   st.header("OrangeFlag")
+   df_grado_flags2 = df_grado[df_grado.firstLabel=='OrangeFlag'].nombre
+   st.table(df_grado_flags2)
+
+with tab3:
+   st.header("RedFlag")
+   df_grado_flags2 = df_grado[df_grado.firstLabel=='RedFlag'].nombre
+   st.table(df_grado_flags2)
 
 
