@@ -1,9 +1,8 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 import plotly.express as px
 import pickle5 as pickle
 import streamlit as st
-import xgboost as xgb
+#import xgboost as xgb
 
 st.set_page_config(
     page_title="Dashboard",
@@ -32,8 +31,7 @@ df = pd.read_csv('data_model.csv')
 
 def predictionLabel(df,model,fecha='2021-12-01'):
     df.set_index('nombre',inplace=True)  
-    df = df[df.fecha==fecha]
-    df=df.drop(['fecha','firstLabel','secondLabel'],axis=1)
+    df = df[df.fecha==fecha].drop(['fecha','firstLabel','secondLabel'],axis=1)
     segment = pd.get_dummies(df['segment'], drop_first = True)
     df2 = df['segment']
     df = df.drop(['segment'], axis = 1)
@@ -41,7 +39,6 @@ def predictionLabel(df,model,fecha='2021-12-01'):
     df['secondLabel']= model.predict(df)
     df['segment'] = df2
     df['secondLabel'] = df['secondLabel'].replace([0,1,2,3,4],['GreenFlag', 'WhiteFlag', 'YellowFlag', 'OrangeFlag', 'RedFlag'])
-
     return df
 
 with open('model.pickle', 'rb') as f:
